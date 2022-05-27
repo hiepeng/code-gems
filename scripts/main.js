@@ -38,9 +38,9 @@ var HR1;
 var HR2;
 var HR3;
 
-const username = 'hiep.nguyenvan';
+const username = 'ha.doanngoc';
 const token =
-    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoaWVwLm5ndXllbnZhbiIsImF1dGgiOiJST0xFX1VTRVIiLCJMQVNUX0xPR0lOX1RJTUUiOjE2NTM1NTY0MDg4NTgsImV4cCI6MTY1NTM1NjQwOH0.Oswr5jZtZKoj241FHpydJOFvyx77zNqp5xYgnlGyBUONww1Ypa-mEk1kXkk8OI2T0yAqOvoihkVp8d4uhZX1vA';
+    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYS5kb2FubmdvYyIsImF1dGgiOiJST0xFX1VTRVIiLCJMQVNUX0xPR0lOX1RJTUUiOjE2NTM2NDMxODkwNDMsImV4cCI6MTY1NTQ0MzE4OX0.sPXfQ3MIgC2SJObb0fiHzjCQ_XZSDbWId7KtmJDEV2SuLC7jqzXIjU0UxdtxxR39NYwc7ISvaAtZuA-DEJOIHg';
 var visualizer = new Visualizer({ el: '#visual' });
 var params = window.params;
 var strategy = window.strategy;
