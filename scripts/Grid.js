@@ -62,20 +62,14 @@ class Grid {
             });
         }
 
-
         if (HR1.isAlive()) {
             matchGemSE = listMatchGem.find((gemMatch) => {
                 return (
                     gemMatch.type === GemType.GREEN ||
                     gemMatch.type === GemType.YELLOW
-                    || (gemMatch.type)
                 );
             });
         }
-
-     
-
-        
      
      
 
@@ -85,9 +79,11 @@ class Grid {
 
         let matchGem = listMatchGem.find((gemMatch) => {
             return (
-                gemMatch.type === GemType.BLUE ||
                 gemMatch.type === GemType.BROWN ||
-                (gemMatch.type === GemType.SWORD && (!HR1.isAlive))
+                gemMatch.type === GemType.BLUE ||
+                (gemMatch.type === GemType.SWORD 
+                    // && gemMatch.sizeMatch > 3
+                    )
             );
         });
 

@@ -40,7 +40,7 @@ var HR3;
 
 const username = 'hiep.nguyenvan';
 const token =
-    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoaWVwLm5ndXllbnZhbiIsImF1dGgiOiJST0xFX1VTRVIiLCJMQVNUX0xPR0lOX1RJTUUiOjE2NTM1NTY0MDg4NTgsImV4cCI6MTY1NTM1NjQwOH0.Oswr5jZtZKoj241FHpydJOFvyx77zNqp5xYgnlGyBUONww1Ypa-mEk1kXkk8OI2T0yAqOvoihkVp8d4uhZX1vA';
+    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoaWVwLm5ndXllbnZhbiIsImF1dGgiOiJST0xFX1VTRVIiLCJMQVNUX0xPR0lOX1RJTUUiOjE2NTM2NDUzNTcyMTUsImV4cCI6MTY1NTQ0NTM1N30.DyTIBZlZvVPfinWOi5ec_sA0IvwGBJnpZLzSsHlYxr1nzX84B5DC9pgeBcJHaRwzQNv7nSs6Vx71S0-Tq1hVUg';
 var visualizer = new Visualizer({ el: '#visual' });
 var params = window.params;
 var strategy = window.strategy;
@@ -412,7 +412,20 @@ function StartTurn(param) {
         console.log(key, this.botPlayer.heroes[key]);
     });
 
-   
+    Object.keys(this.enemyPlayer.heroes).forEach(function (key) {
+        console.log(this.enemyPlayer.heroes[key].id);
+        if (
+            HR3.isAlive() &&
+            HR3.isFullMana() &&
+            (this.enemyPlayer.heroes[key].id === 'CERBERUS' ||
+                this.enemyPlayer.heroes[key].id === 'THUNDER_GOD' ||
+                this.enemyPlayer.heroes[key].id === 'SEA_GOD')
+        ) {
+            SendCastSkill(HR3, {
+                targetId: this.enemyPlayer.heroes[key].id.toString(),
+            });
+        }
+    });
 
     setTimeout(function () {
         if (!isBotTurn()) {
@@ -426,61 +439,20 @@ function StartTurn(param) {
         }
         let heroFullMana = botPlayer.anyHeroFullMana();
 
-        Object.keys(this.enemyPlayer.heroes).forEach(function (key) {
-            console.log(this.enemyPlayer.heroes[key].id);
-            if (
-                HR3.isAlive() &&
-                HR3.isFullMana() &&
-                (this.enemyPlayer.heroes[key].id === 'CERBERUS' ||
-                    this.enemyPlayer.heroes[key].id === 'SEA_GOD')
-            ) {
-                SendCastSkill(HR1, {
-                    targetId: this.enemyPlayer.heroes[key].id.toString(),
-                });
-            }
-        });
-
-        if (HR3.isFullMana() && HR2.isFullMana() && HR1.isFullMana()) {
-            SendCastSkill(HR1, { targetId: HR2.id.toString()     
-            });
-        }
-
-       
-
         if (HR1.isFullMana() && HR2.isAlive()) {
-            SendCastSkill(HR1, { targetId: HR2.id.toString() 
-
-            
-                
+            SendCastSkill(HR1, { targetId: HR2.id.toString()     
             });
         }
         
-        if (HR1.isFullMana() && HR2.isAlive()) {
-            SendCastSkill(HR1, { targetId: HR2.id.toString()     
-            });
-        }
-
-  
-
-
-        if (HR1.isFullMana() && HR2.isFullMana()) {
-            SendCastSkill(HR1, { targetId: HR2.id.toString()     
-            });
-        }
-
-        if (HR3.isFullMana() && HR1.isFullMana()) {
+        if (HR1.isFullMana() && HR3.isAlive()) {
             SendCastSkill(HR1, { targetId: HR3.id.toString()     
             });
         }
 
-        if (HR3.isFullMana() && HR2.isFullMana()) {
+        if (HR2.isAlive() && HR3.isAlive()) {
             SendCastSkill(HR2);
         }
-
-
-    
-
-      
+       
 
         if (heroFullMana != null) {
             SendCastSkill(heroFullMana);
