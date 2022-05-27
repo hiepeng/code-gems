@@ -412,20 +412,7 @@ function StartTurn(param) {
         console.log(key, this.botPlayer.heroes[key]);
     });
 
-    Object.keys(this.enemyPlayer.heroes).forEach(function (key) {
-        console.log(this.enemyPlayer.heroes[key].id);
-        if (
-            HR3.isAlive() &&
-            HR3.isFullMana() &&
-            (this.enemyPlayer.heroes[key].id === 'CERBERUS' ||
-                this.enemyPlayer.heroes[key].id === 'THUNDER_GOD' ||
-                this.enemyPlayer.heroes[key].id === 'SEA_GOD')
-        ) {
-            SendCastSkill(HR3, {
-                targetId: this.enemyPlayer.heroes[key].id.toString(),
-            });
-        }
-    });
+   
 
     setTimeout(function () {
         if (!isBotTurn()) {
@@ -439,26 +426,61 @@ function StartTurn(param) {
         }
         let heroFullMana = botPlayer.anyHeroFullMana();
 
-        if (HR3.isFullMana() && HR1.isAlive()) {
-            SendCastSkill(HR3, { targetId: HR1.id.toString()     
+        Object.keys(this.enemyPlayer.heroes).forEach(function (key) {
+            console.log(this.enemyPlayer.heroes[key].id);
+            if (
+                HR3.isAlive() &&
+                HR3.isFullMana() &&
+                (this.enemyPlayer.heroes[key].id === 'CERBERUS' ||
+                    this.enemyPlayer.heroes[key].id === 'SEA_GOD')
+            ) {
+                SendCastSkill(HR1, {
+                    targetId: this.enemyPlayer.heroes[key].id.toString(),
+                });
+            }
+        });
+
+        if (HR3.isFullMana() && HR2.isFullMana() && HR1.isFullMana()) {
+            SendCastSkill(HR1, { targetId: HR2.id.toString()     
+            });
+        }
+
+       
+
+        if (HR1.isFullMana() && HR2.isAlive()) {
+            SendCastSkill(HR1, { targetId: HR2.id.toString() 
+
+            
+                
             });
         }
         
-        if (HR3.isFullMana() && HR2.isAlive()) {
-            SendCastSkill(HR3, { targetId: HR2.id.toString()     
+        if (HR1.isFullMana() && HR2.isAlive()) {
+            SendCastSkill(HR1, { targetId: HR2.id.toString()     
+            });
+        }
+
+  
+
+
+        if (HR1.isFullMana() && HR2.isFullMana()) {
+            SendCastSkill(HR1, { targetId: HR2.id.toString()     
+            });
+        }
+
+        if (HR3.isFullMana() && HR1.isFullMana()) {
+            SendCastSkill(HR1, { targetId: HR3.id.toString()     
             });
         }
 
         if (HR3.isFullMana() && HR2.isFullMana()) {
-            SendCastSkill(HR3, { targetId: HR2.id.toString()     
-            });
+            SendCastSkill(HR2);
         }
 
-        if (HR3.isFullMana() && HR2.isFullMana() && HR1.isFullMana()) {
-            SendCastSkill(HR3, { targetId: HR2.id.toString()     
-            });
-        }
-       
+
+    
+
+      
 
         if (heroFullMana != null) {
             SendCastSkill(heroFullMana);
