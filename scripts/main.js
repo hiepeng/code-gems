@@ -38,9 +38,9 @@ var HR1;
 var HR2;
 var HR3;
 
-const username = 'ha.doanngoc';
+const username = 'hiep.nguyenvan';
 const token =
-    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYS5kb2FubmdvYyIsImF1dGgiOiJST0xFX1VTRVIiLCJMQVNUX0xPR0lOX1RJTUUiOjE2NTM2NDMxODkwNDMsImV4cCI6MTY1NTQ0MzE4OX0.sPXfQ3MIgC2SJObb0fiHzjCQ_XZSDbWId7KtmJDEV2SuLC7jqzXIjU0UxdtxxR39NYwc7ISvaAtZuA-DEJOIHg';
+    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoaWVwLm5ndXllbnZhbiIsImF1dGgiOiJST0xFX1VTRVIiLCJMQVNUX0xPR0lOX1RJTUUiOjE2NTM2NDUzNTcyMTUsImV4cCI6MTY1NTQ0NTM1N30.DyTIBZlZvVPfinWOi5ec_sA0IvwGBJnpZLzSsHlYxr1nzX84B5DC9pgeBcJHaRwzQNv7nSs6Vx71S0-Tq1hVUg';
 var visualizer = new Visualizer({ el: '#visual' });
 var params = window.params;
 var strategy = window.strategy;
@@ -439,14 +439,18 @@ function StartTurn(param) {
         }
         let heroFullMana = botPlayer.anyHeroFullMana();
 
+        if (HR1.isFullMana() && HR2.isAlive()) {
+            SendCastSkill(HR1, { targetId: HR2.id.toString()     
+            });
+        }
+        
         if (HR1.isFullMana() && HR3.isAlive()) {
             SendCastSkill(HR1, { targetId: HR3.id.toString()     
             });
         }
-        
-        if (HR1.isFullMana() && HR2.isAlive()) {
-            SendCastSkill(HR1, { targetId: HR2.id.toString()     
-            });
+
+        if (HR2.isAlive() && HR3.isAlive()) {
+            SendCastSkill(HR2);
         }
        
 
