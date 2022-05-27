@@ -410,22 +410,26 @@ function StartTurn(param) {
 
     Object.keys(this.botPlayer.heroes).forEach(function (key) {
         console.log(key, this.botPlayer.heroes[key]);
-    });
-
-    Object.keys(this.enemyPlayer.heroes).forEach(function (key) {
+      });
+    
+      Object.keys(this.enemyPlayer.heroes).forEach(function (key) {
         console.log(this.enemyPlayer.heroes[key].id);
         if (
             HR3.isAlive() &&
             HR3.isFullMana() &&
-            (this.enemyPlayer.heroes[key].id === 'CERBERUS' ||
-                this.enemyPlayer.heroes[key].id === 'THUNDER_GOD' ||
-                this.enemyPlayer.heroes[key].id === 'SEA_GOD')
+          (this.enemyPlayer.heroes[key].id === "CERBERUS" ||
+            this.enemyPlayer.heroes[key].id === "THUNDER_GOD" ||
+            this.enemyPlayer.heroes[key].id === "SEA_GOD" ||
+            this.enemyPlayer.heroes[key].id === "FIRE_SPRIT" ||
+            this.enemyPlayer.heroes[key].id === "DISPATER" ||
+            this.enemyPlayer.heroes[key].id === "AIR_SPIRIT" ||
+            this.enemyPlayer.heroes[key].id === "MERMAID")
         ) {
-            SendCastSkill(HR3, {
-                targetId: this.enemyPlayer.heroes[key].id.toString(),
-            });
+          SendCastSkill(FIRE_SPRIT, {
+            targetId: this.enemyPlayer.heroes[key].id.toString(),
+          });
         }
-    });
+      });
 
     setTimeout(function () {
         if (!isBotTurn()) {
@@ -443,12 +447,6 @@ function StartTurn(param) {
             SendCastSkill(HR1, { targetId: HR2.id.toString()     
             });
         }
-        
-        if (HR1.isFullMana() && HR3.isAlive()) {
-            SendCastSkill(HR1, { targetId: HR3.id.toString()     
-            });
-        }
-
         if (HR2.isAlive() && HR3.isAlive()) {
             SendCastSkill(HR2);
         }
