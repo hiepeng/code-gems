@@ -410,26 +410,22 @@ function StartTurn(param) {
 
     Object.keys(this.botPlayer.heroes).forEach(function (key) {
         console.log(key, this.botPlayer.heroes[key]);
-      });
-    
-      Object.keys(this.enemyPlayer.heroes).forEach(function (key) {
+    });
+
+    Object.keys(this.enemyPlayer.heroes).forEach(function (key) {
         console.log(this.enemyPlayer.heroes[key].id);
         if (
             HR3.isAlive() &&
             HR3.isFullMana() &&
-          (this.enemyPlayer.heroes[key].id === "CERBERUS" ||
-            this.enemyPlayer.heroes[key].id === "THUNDER_GOD" ||
-            this.enemyPlayer.heroes[key].id === "SEA_GOD" ||
-            this.enemyPlayer.heroes[key].id === "FIRE_SPRIT" ||
-            this.enemyPlayer.heroes[key].id === "DISPATER" ||
-            this.enemyPlayer.heroes[key].id === "AIR_SPIRIT" ||
-            this.enemyPlayer.heroes[key].id === "MERMAID")
+            (this.enemyPlayer.heroes[key].id === 'CERBERUS' ||
+                this.enemyPlayer.heroes[key].id === 'FIRE_SPIRIT' ||
+                this.enemyPlayer.heroes[key].id === 'SEA_GOD')
         ) {
-          SendCastSkill(FIRE_SPRIT, {
-            targetId: this.enemyPlayer.heroes[key].id.toString(),
-          });
+            SendCastSkill(HR3, {
+                targetId: this.enemyPlayer.heroes[key].id.toString(),
+            });
         }
-      });
+    });
 
     setTimeout(function () {
         if (!isBotTurn()) {
