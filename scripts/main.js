@@ -439,13 +439,23 @@ function StartTurn(param) {
         }
         let heroFullMana = botPlayer.anyHeroFullMana();
 
-        if (HR1.isFullMana() && HR3.isAlive()) {
-            SendCastSkill(HR1, { targetId: HR3.id.toString()     
+        if (HR3.isFullMana() && HR1.isAlive()) {
+            SendCastSkill(HR3, { targetId: HR1.id.toString()     
             });
         }
         
-        if (HR1.isFullMana() && HR2.isAlive()) {
-            SendCastSkill(HR1, { targetId: HR2.id.toString()     
+        if (HR3.isFullMana() && HR2.isAlive()) {
+            SendCastSkill(HR3, { targetId: HR2.id.toString()     
+            });
+        }
+
+        if (HR3.isFullMana() && HR2.isFullMana()) {
+            SendCastSkill(HR3, { targetId: HR2.id.toString()     
+            });
+        }
+
+        if (HR3.isFullMana() && HR2.isFullMana() && HR1.isFullMana()) {
+            SendCastSkill(HR3, { targetId: HR2.id.toString()     
             });
         }
        

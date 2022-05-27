@@ -53,16 +53,17 @@ class Grid {
         var matchGemSE;
      
 
+
         if (HR2.isAlive()) {
             matchGemSE = listMatchGem.find((gemMatch) => {
                 return (
-                    gemMatch.type === GemType.BROWN ||
-                    gemMatch.type === GemType.BLUE
+                    gemMatch.type === GemType.BLUE ||
+                    gemMatch.type === GemType.BROWN
                 );
             });
         }
 
-        if (HR1.isAlive()) {
+        if (HR3.isAlive()) {
             matchGemSE = listMatchGem.find((gemMatch) => {
                 return (
                     gemMatch.type === GemType.GREEN ||
@@ -70,6 +71,8 @@ class Grid {
                 );
             });
         }
+
+        
      
      
 
