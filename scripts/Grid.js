@@ -42,18 +42,11 @@ class Grid {
         if (listMatchGem.length === 0) {
             return [-1, -1];
         }
-
-        let matchGemSizeThanFive = listMatchGem.find(
-            (gemMatch) => gemMatch.sizeMatch > 4,
-        );
-
-        if (matchGemSizeThanFive) {
-            return matchGemSizeThanFive.getIndexSwapGem();
-        }
         var matchGemSE;
-     
 
-        if (HR3.isAlive()) {
+        matchGemSE = listMatchGem.find((gemMatch) => gemMatch.sizeMatch > 4);
+
+        if (HR3.isAlive() && !HR3.isFullMana()) {
             matchGemSE = listMatchGem.find((gemMatch) => {
                 return (
                     gemMatch.type === GemType.RED ||
@@ -61,53 +54,29 @@ class Grid {
                 );
             });
         }
-
-        if (HR1.isAlive()) {
+        if (HR1.isAlive() && !HR1.isFullMana()) {
             matchGemSE = listMatchGem.find((gemMatch) => {
                 return (
-                    gemMatch.type === GemType.GREEN ||
-                    gemMatch.type === GemType.YELLOW
+                    gemMatch.type === GemType.YELLOW ||
+                    gemMatch.type === GemType.GREEN
                 );
             });
         }
-     
-     
 
-        if (matchGemSE) {
-            return matchGemSE.getIndexSwapGem();
-        }
-
-        let matchGem = listMatchGem.find((gemMatch) => {
+        matchGemSE = listMatchGem.find((gemMatch) => {
             return (
                 gemMatch.type === GemType.BROWN ||
                 gemMatch.type === GemType.BLUE ||
-                (gemMatch.type === GemType.SWORD 
-                    // && gemMatch.sizeMatch > 3
-                    )
+                (gemMatch.type === GemType.SWORD && gemMatch.sizeMatch > 3) ||
+                gemMatch.type === GemType.SWORD
             );
         });
 
-        if (matchGem) {
-            return matchGem.getIndexSwapGem();
-        }
+        matchGemSE = listMatchGem.find((gemMatch) => gemMatch.sizeMatch > 3);
 
-        let matchGemSizeThanFour = listMatchGem.find(
-            (gemMatch) => gemMatch.sizeMatch > 3,
-        );
+        matchGemSE = listMatchGem.find((gemMatch) => gemMatch.sizeMatch > 3);
 
-        if (matchGemSizeThanFour) {
-            return matchGemSizeThanFour.getIndexSwapGem();
-        }
-
-        let matchGemSizeThanThree = listMatchGem.find(
-            (gemMatch) => gemMatch.sizeMatch > 3,
-        );
-
-        if (matchGemSizeThanThree) {
-            return matchGemSizeThanThree.getIndexSwapGem();
-        }
-
-        let matchGemModifier = listMatchGem.find((gemMatch) => {
+        matchGemSE = listMatchGem.find((gemMatch) => {
             return (
                 gemMatch.type === GemModifier.NONE ||
                 gemMatch.type === GemModifier.MANA ||
@@ -121,8 +90,8 @@ class Grid {
             );
         });
 
-        if (matchGemModifier) {
-            return matchGemModifier.getIndexSwapGem();
+        if (matchGemSE) {
+            return matchGemSE.getIndexSwapGem();
         }
         console.log(
             'myHeroGemType: ',
