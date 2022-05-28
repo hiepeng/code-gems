@@ -46,15 +46,8 @@ class Grid {
 
         matchGemSE = listMatchGem.find((gemMatch) => gemMatch.sizeMatch > 4);
 
-        if (HR3.isAlive() && !HR3.isFullMana()) {
-            matchGemSE = listMatchGem.find((gemMatch) => {
-                return (
-                    gemMatch.type === GemType.RED ||
-                    gemMatch.type === GemType.PURPLE
-                );
-            });
-        }
-        if (HR1.isAlive() && !HR1.isFullMana()) {
+
+           if (HR1.isAlive()) {
             matchGemSE = listMatchGem.find((gemMatch) => {
                 return (
                     gemMatch.type === GemType.YELLOW ||
@@ -62,6 +55,16 @@ class Grid {
                 );
             });
         }
+
+        if (HR3.isAlive()) {
+            matchGemSE = listMatchGem.find((gemMatch) => {
+                return (
+                    gemMatch.type === GemType.RED ||
+                    gemMatch.type === GemType.PURPLE
+                );
+            });
+        }
+     
 
         matchGemSE = listMatchGem.find((gemMatch) => {
             return (
