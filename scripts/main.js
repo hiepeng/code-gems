@@ -418,8 +418,10 @@ function StartTurn(param) {
             HR3.isAlive() &&
             HR3.isFullMana() &&
             (this.enemyPlayer.heroes[key].id === 'CERBERUS' ||
-                this.enemyPlayer.heroes[key].id === 'FIRE_SPIRIT' ||
-                this.enemyPlayer.heroes[key].id === 'SEA_GOD')
+                this.enemyPlayer.heroes[key].id === 'THUNDER_GOD' ||
+                this.enemyPlayer.heroes[key].id === 'SEA_GOD' ||
+                // this.enemyPlayer.heroes[key].id === 'FIRE_SPIRIT' ||
+                this.enemyPlayer.heroes[key].attack > 10)
         ) {
             SendCastSkill(HR3, {
                 targetId: this.enemyPlayer.heroes[key].id.toString(),
@@ -440,13 +442,11 @@ function StartTurn(param) {
         let heroFullMana = botPlayer.anyHeroFullMana();
 
         if (HR1.isFullMana() && HR2.isAlive()) {
-            SendCastSkill(HR1, { targetId: HR2.id.toString()     
-            });
+            SendCastSkill(HR1, { targetId: HR2.id.toString() });
         }
         if (HR2.isAlive() && HR3.isAlive()) {
             SendCastSkill(HR2);
         }
-       
 
         if (heroFullMana != null) {
             SendCastSkill(heroFullMana);
